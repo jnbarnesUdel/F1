@@ -29,6 +29,14 @@ public class RateBLL {
 		
 		ArrayList<RateDomainModel> rates = RateDAL.getAllRates();
 		
+		for(RateDomainModel r : rates)
+		{
+			if(r.getiMinCreditScore() < GivenCreditScore)
+			{
+				dInterestRate = r.getiMinCreditScore();
+				return dInterestRate;
+			}
+		}
 
 		//TODO: Filter the ArrayList...  look for the correct rate for the given credit score.
 		//	Easiest way is to apply a filter using a Lambda function.
