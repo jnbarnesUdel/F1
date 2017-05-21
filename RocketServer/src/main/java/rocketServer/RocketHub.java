@@ -27,15 +27,21 @@ public class RocketHub extends Hub {
 			//	TODO - RocketHub.messageReceived
 			try{
 				RateBLL.getRate(lq.getiCreditScore());
+				lq.setdRate(RateBLL.getRate(lq.getiCreditScore()));
 			}
 			catch(RateException e) {
 				e.printStackTrace();
 			}
 			
-			//if you can pay or not
+			//if you can pay or not, and sets payment if you can pay
 			if(RateBLL.expences(lq)) 
 			{
+				lq.setdPayment(RateBLL.getPayment(lq.getdRate(), lq.getiTerm() * 12, lq.getdAmount()-lq.getiDownPayment(), 0, true));
 				sendToAll(lq);
+			}
+			else
+			{
+				//can't afford house
 			}
 			//	You will have to:
 			//	Determine the rate with the given credit score (call RateBLL.getRate)
