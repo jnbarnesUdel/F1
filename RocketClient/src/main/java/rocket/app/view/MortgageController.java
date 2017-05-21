@@ -49,6 +49,12 @@ public class MortgageController {
 	public void HandleLoanRequestDetails(LoanRequest lRequest)
 	{
 		CalculatedPay.setText(lRequest.getdPayment());
+		txtCreditScore.setText(lRequest.getiCreditScore());
+		txtMortgageAmt.setText(lRequest.getdAmount() - lRequest.getiDownPayment());
+		txtIncome.setText(lRequest.getIncome());
+		txtExpenses.setText(lRequest.getExpenses());
+		txtHouseCost.setText(lRequest.getdAmount());
+		cmbTerm.setTooltip(lRequest.getiTerm());
 		//			lRequest is an instance of LoanRequest.
 		//			after it's returned back from the server, the payment (dPayment)
 		//			should be calculated.
